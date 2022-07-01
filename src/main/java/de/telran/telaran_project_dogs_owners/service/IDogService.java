@@ -10,9 +10,5 @@ public interface IDogService {
 
     void createDog(DogRequestDTO request);
 
-    //List<DogResponseDTO> getAllByOwnerId(Integer ownerId);
-
-    //DogResponseDTO getDogById(Integer id);
-
     List<DogResponseDTO> getDogs(boolean isUnregistered);
 }

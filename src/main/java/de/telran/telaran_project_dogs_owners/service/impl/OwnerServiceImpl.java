@@ -33,7 +33,7 @@ public class OwnerServiceImpl implements IOwnerService {
     @Override
     public List<OwnerResponseDTO> getAllOwners() {
         return ownerRepository.findAll().stream()
-                .map(this::mapOwnerToDto)
+                .map(this::setDogsToOwnerAndGetResponse)
                 .collect(Collectors.toList());
     }
 
@@ -41,17 +41,18 @@ public class OwnerServiceImpl implements IOwnerService {
     public OwnerResponseDTO getOwnerById(Integer id) {
         Owner owner = ownerRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return setDogsToOwnerAndGetResponse(owner);
+    }
 
-        List<Dog> dogs = dogRepository.findAllByOwner(owner);
+    private OwnerResponseDTO setDogsToOwnerAndGetResponse(Owner owner) {
+        var dogs = dogRepository.findAllByOwner(owner);
         OwnerResponseDTO response =  mapOwnerToDto(owner);
         response.setDogs(dogs);
-
         return response;
     }
 
     @Override
     public void toggleDogOwner(Integer ownerId, Integer dogId) {
-        System.out.println("-----" + dogId);
         Owner owner = ownerRepository
                 .findById(ownerId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "dog")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

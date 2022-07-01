@@ -51,6 +51,8 @@ public class DogServiceImpl implements IDogService {
                 .id(dog.getId())
                 .nickname(dog.getNickname())
                 .breed(dog.getBreed())
+                .registrationDate(dog.getRegistrationDate())
+                .owner(dog.getOwner())
                 .build();
     }
 

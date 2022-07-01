@@ -32,7 +32,6 @@ public class OwnerController {
     @PutMapping("/owners/{ownerId}/dogs/{dogId}")
     public void toggleDogOwner(@PathVariable("ownerId") Integer ownerId,
                                @PathVariable("dogId") Integer dogId) {
-        System.out.println("===>" + dogId);
         iOwnerService.toggleDogOwner(ownerId, dogId);
 
     }
